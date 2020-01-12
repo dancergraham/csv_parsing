@@ -3,7 +3,7 @@ import csv
 
 class CSVParserNoOutputModelException(Exception):
     def __init__(self):
-        self.message = "CSV Parser should have a output model associated!"
+        self.message = "CSV Parser should have an output model associated!"
 
 
 class CSVParserOutputModelUnmatchException(Exception):

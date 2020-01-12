@@ -2,8 +2,8 @@ import math
 import statistics
 
 
-def compute_average_and_stdev(list):
-    return (statistics.mean(list), statistics.stdev(list))
+def compute_average_and_stdev(my_list):
+    return (statistics.mean(my_list), statistics.stdev(my_list))
 
 
 def compute_u_from_delta_p(delta_p, rho):
