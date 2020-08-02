@@ -40,18 +40,20 @@ def main():
             print(f"{channel_name}, ({channel_unit_name}) : {channel_comment}")
             channel_format = int.from_bytes(f.read(2), byteorder='little')
             channel_data_width = int.from_bytes(f.read(2), byteorder='little')
-            channel_datum_time = struct.unpack('d',f.read(8))
+            channel_datetime = struct.unpack('d',f.read(8))
             channel_extended_name_length = int.from_bytes(f.read(4), byteorder='little')
-
-            #  Seems OK up to here, after that I'm not so sure
-
             channel_extended_name_bytes = f.read(channel_extended_name_length)
             channel_extended_name = channel_extended_name_bytes.decode(encoding='latin_1')
-            channel_linearisation_mode = f.read(2).decode(encoding='latin_1')
-            channel_user_scale = f.read(2).decode(encoding='latin_1')
-            channel_linearisation_points = f.read(2).decode(encoding='latin_1')
-            print(channel_linearisation_points)
-            break
+            channel_linearisation_mode = int.from_bytes(f.read(1), byteorder='little')
+            channel_user_scale = int.from_bytes(f.read(1), byteorder='little')
+            channel_linearisation_points = int.from_bytes(f.read(1), byteorder='little')
+            print(f"{channel_linearisation_mode}, {channel_user_scale}, {channel_linearisation_points}")
+            thermo_type = int.from_bytes(f.read(2), byteorder='little')
+            formula_length = int.from_bytes(f.read(2), byteorder='little')
+            formula = f.read(formula_length).decode(encoding='latin_1')
+            DB_sensor_info_length = int.from_bytes(f.read(4), byteorder='little')
+            DB_sensor_info = f.read(DB_sensor_info_length).decode(encoding='latin_1')
+            breakpoint()
 
 
 if __name__ == '__main__':
